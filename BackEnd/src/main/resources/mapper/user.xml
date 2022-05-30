@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ssafy.happyhouse.model.mapper.UserMapper">
+
+ 	<select id="login" parameterType="UserInfoDto" resultType="UserInfoDto">
+		select *
+		from userinfo
+		where userId = #{userId} and userPassword = #{userPassword}
+	</select>
+	
+	<select id="getUserInfo" parameterType="String" resultType="UserInfoDto">
+		select *
+		from userinfo
+		where userId = #{userId}
+	</select>
+
+	<update id="modifyUserInfo" parameterType="UserInfoDto">
+		update userinfo
+		set userPassword = #{userPassword}, userName = #{userName}, userAddress = #{userAddress}, userPhone = #{userPhone}, userEmail = #{userEmail}
+		where userId = #{userId}
+	</update>
+	
+	
+	<insert id="signup" parameterType="UserInfoDto">
+		insert into userinfo (userId, userPassword, userName, userAddress, userPhone, userEmail)
+		values (#{userId}, #{userPassword}, #{userName}, #{userAddress}, #{userPhone}, #{userEmail})
+	</insert>
+
+
+
+	<delete id="removeUserInfo" parameterType="String">
+		delete from userinfo
+		where userId = #{userId}
+	</delete>
+
+	<select id="checkId" parameterType="String" resultType="boolean">
+		select count(userId)
+		from userinfo
+		where userId = #{userId}
+	</select>
+
+	<select id="findPassword" parameterType="UserInfoDto" resultType="UserInfoDto">
+		select userPassword
+		from userinfo
+		where userId = #{userId} and userName = #{userName}
+	</select>
+
+	
+
+
+</mapper>

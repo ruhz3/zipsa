@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ssafy.happyhouse.model.mapper.BookmarkMapper">
+
+	<select id="selectBookmarkList" parameterType="String" resultType="HouseInfoDto">
+		select h.aptCode, h.aptName, h.dongName, h.buildYear, h.jibun,
+			(select dealAmount from housedeal where aptCode = h.aptCode and no = (select max(no) from housedeal where aptCode = h.aptCode)) recentPrice
+		from houseinfo h
+		where h.aptCode in (select aptCode from bookmarkinfo where userId = #{userId})
+		order by aptCode asc
+	</select>
+
+	<select id="selectBookmarkByAptCode" parameterType="int" resultType="HouseInfoDto">
+		select h.aptCode, h.aptName, h.dongName, h.buildYear, h.jibun, h.lat, h.lng, 
+			(select dealAmount from housedeal where aptCode = h.aptCode and no = (select max(no) from housedeal where aptCode = h.aptCode)) recentPrice
+			from houseinfo h
+			where h.aptCode = #{aptCode}
+	</select>
+
+	<insert id="insertBookmark" parameterType="BookmarkInfoDto">
+		insert into bookmarkinfo(userId, aptCode)
+		values(#{userId}, #{aptCode})
+	</insert>
+	
+	<delete id="deleteBookmark" parameterType="map">
+		delete from bookmarkinfo
+		where userId = #{userId} and aptCode = #{aptCode}
+	</delete>
+	
+	<select id="selectBookmarkChartData" parameterType="int" resultType="BookmarkChartDto">
+		select housedeal.aptCode, h.aptName, max(area) maxArea, max(floor) maxFloor, buildYear, 
+		ltrim((select (select dealAmount from housedeal where aptCode = h.aptCode and no = (select max(no) 
+		from housedeal where aptCode = h.aptCode)) recentPrice
+		from houseinfo h
+		where h.aptCode = #{aptCode})) recentPrice , (select count(*)
+		from housedeal
+		where aptCode = #{aptCode}) dealCount
+		from housedeal, houseinfo h
+		where housedeal.aptCode = #{aptCode};
+	</select>
+
+</mapper>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ssafy.happyhouse.model.mapper.BoardMapper">
+
+	<select id="selectBoardList" parameterType="String" resultType="BoardInfoDto">
+		select boardId, boardGroupId, title, content, userId, date, commentCount
+		from boardinfo
+		where boardGroupId = #{boardGroupId}
+	</select>
+	
+	<select id="selectBoardRecentList" parameterType="String" resultType="BoardInfoDto">
+		select boardId, boardGroupId, title, content, userId, date, commentCount
+		from boardinfo
+		where boardGroupId = #{boardGoupId}
+		order by date desc
+		limit 5
+	</select>
+	
+	<select id="selectBoardByBoardId" parameterType="int" resultType="BoardInfoDto">
+		select boardId, boardGroupId, title, content, userId, date, commentCount
+		from boardinfo
+		where boardId=#{boardId}
+	</select>
+	
+	<select id="selectBoardFileList" parameterType="int" resultType="FileInfoDto">
+		select boardId, fileId, fileName, fileSize, fileContentType, fileUrl, date
+		from fileinfo
+		where boardId = #{boardId}
+	</select>
+	
+	<select id="selectBoardFileUrlDeleteList" parameterType="int" resultType="String">
+		select fileUrl
+		from fileinfo
+		where boardId = #{boardId}
+	</select>
+	
+	<insert id="insertBoard" parameterType="BoardInfoDto" useGeneratedKeys="true" keyProperty="boardId">
+		insert into boardinfo(boardGroupId, title, content, userId, date)
+		values(#{boardGroupId}, #{title}, #{content}, #{userId}, now())
+	</insert>
+	
+	<insert id="insertBoardFile" parameterType="BoardInfoDto">
+		insert into fileinfo(fileId, boardId, fileSize, fileContentType, fileUrl)
+		values (#{boardId}, #{fileName}, #{fileSize}, #{fileContentType}, #{fileUrl})
+	</insert>
+	
+	<update id="updateBoard" parameterType="BoardInfoDto">
+		update boardinfo
+		set boardGroupId = #{boardGroupId}, title=#{title}, content=#{content}, userId=#{userId}, date=now()
+		where boardId=#{boardId}
+	</update>
+	
+	<delete id="deleteBoard" parameterType="int">
+		delete from boardinfo
+		where boardId=#{boardId}
+	</delete>
+	
+	<delete id="deleteBoardFile" parameterType="int">
+		delete from fileinfo
+		where boardid=#{boardId}
+	</delete>
+	
+	<select id="selectCommentList" parameterType="int" resultType="BoardCommentInfoDto">
+		select commentId, boardId, content, userId, date
+		from boardcommentinfo
+		where boardId = #{boardId}
+	</select>
+	
+	<select id="getCommentCountByBoardId" parameterType="int" resultType="int">
+		select count(*)
+		from boardcommentinfo
+		where boardId = #{boardId}
+	</select>
+	
+	<insert id="updateCommentCount">
+		update boardinfo
+		set commentCount = (select count(*)
+							from boardcommentinfo
+							where boardinfo.boardId = boardcommentinfo.boardId)
+	</insert>
+	
+	<insert id="insertComment" parameterType="BoardCommentInfoDto">
+		insert into boardcommentinfo(boardId, content, userId, date)
+		values(#{boardId}, #{content}, #{userId}, now())
+	</insert>
+	
+	<update id="updateComment" parameterType="BoardCommentInfoDto">
+		update boardcommentinfo
+		set boardId=#{boardId}, content=#{content}, userId=#{userId}, date=now()
+		where commentId=#{commentId}
+	</update>
+	
+	<delete id="deleteComment" parameterType="int">
+		delete from boardcommentinfo
+		where commentId=#{commentId}
+	</delete>
+	
+</mapper>

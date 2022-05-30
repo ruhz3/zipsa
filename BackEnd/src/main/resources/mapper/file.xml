@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ssafy.happyhouse.model.mapper.FileMapper">
+
+	<select id="selectFileListByBoardId" parameterType="int" resultType="FileInfoDto">
+		select fileId, boardId, originName, saveName, fileSize, time
+		from fileinfo
+		where boardId = #{boardId}
+	</select>
+	
+	<select id="selectFileDetail" parameterType="int" resultType="FileInfoDto">
+		select fileId, boardId, originName, saveName, fileSize, time
+		from fileinfo
+		where fileId = #{fileId}
+	</select>
+	
+	<insert id="insertFile" parameterType="list">
+		insert into fileinfo(fileId, boardId, originName, saveName, fileSize, time)
+		values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.fileId}, #{item.boardId}, #{item.originName}, #{item.saveName}, #{item.fileSize}, now())
+		</foreach>
+	</insert>
+
+	<delete id="deleteFile" parameterType="int">
+		delete from fileinfo
+		where boardId = #{boardId}
+	</delete>
+	
+	
+	<select id="selectFileTotalCount" parameterType="int" resultType="int">
+		select count(*)
+		from fileinfo
+		where boardId = #{boardId}
+	</select>
+
+</mapper>

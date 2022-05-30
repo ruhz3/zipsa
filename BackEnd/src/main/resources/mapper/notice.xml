@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ssafy.happyhouse.model.mapper.NoticeMapper">
+
+	<select id="selectNoticeList" resultType="NoticeInfoDto">
+		select noticeId, title, content, userId, date
+		from noticeinfo
+	</select>
+	
+	<select id="selectNoticeRecentList" resultType="NoticeInfoDto">
+		select noticeId, title, content, userId, date
+		from noticeinfo
+		order by date desc
+		limit 5
+	</select>
+	
+	<select id="selectNoticeByNoticeId" parameterType="int" resultType="NoticeInfoDto">
+		select noticeId, title, content, userId, date
+		from noticeinfo
+		where noticeId=#{noticeId}
+	</select>
+	
+	<insert id="insertNotice" parameterType="NoticeInfoDto">
+		insert into noticeinfo(title, content, userId, date)
+		values(#{title}, #{content}, #{userId}, now())
+	</insert>
+	
+	<update id="updateNotice" parameterType="NoticeInfoDto">
+		update noticeinfo
+		set title=#{title}, content=#{content}, userId=#{userId}, date=now()
+		where noticeId=#{noticeId}
+	</update>
+	
+	<delete id="deleteNotice" parameterType="int">
+		delete from noticeinfo
+		where noticeId=#{noticeId}
+	</delete>
+</mapper>

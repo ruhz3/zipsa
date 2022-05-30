@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ssafy.happyhouse.model.mapper.QnaMapper">
+
+	<select id="selectQnaList" resultType="QnaInfoDto">
+		select qnaId, title, content, userId, commentCount, date
+		from qnainfo
+	</select>
+	
+	<select id="selectQnaRecentList" resultType="QnaInfoDto">
+		select qnaId, title, content, userId, commentCount, date
+		from qnainfo
+		order by date desc
+		limit 5
+	</select>
+	
+	<select id="selectQnaByQnaId" parameterType="int" resultType="QnaInfoDto">
+		select qnaId, title, content, userId, commentCount, date
+		from qnainfo
+		where qnaId=#{qnaId}
+	</select>
+	
+	
+	<insert id="insertQna" parameterType="QnaInfoDto">
+		insert into qnainfo(title, content, userId, commentCount, date)
+		values(#{title}, #{content}, #{userId}, #{commentCount}, now())
+	</insert>
+	
+	<update id="updateQna" parameterType="QnaInfoDto">
+		update qnainfo
+		set title=#{title}, content=#{content}, userId=#{userId}, date=now()
+		where qnaId=#{qnaId}
+	</update>
+	
+	<delete id="deleteQna" parameterType="int">
+		delete from qnainfo
+		where qnaId=#{qnaId}
+	</delete>
+	
+	<select id="selectCommentList" parameterType="int" resultType="QnaCommentInfoDto">
+		select commentId, content, userId, date
+		from qnacommentinfo
+		where qnaId=#{qnaId}
+	</select>
+	
+	<select id="getCommentCountByQnaId" parameterType="int" resultType="int">
+		select count(*)
+		from qnacommentinfo
+		where qnaId=#{qnaId}
+	</select>
+	
+	<insert id="updateCommentCount">
+		update qnainfo
+		set commentCount = ( select count(*) 
+							from qnacommentinfo
+							where qnainfo.qnaId = qnacommentinfo.qnaId)
+	</insert>
+	
+	<insert id="insertComment" parameterType="QnaCommentInfoDto">
+		insert into qnacommentinfo(qnaId, content, userId, date)
+		values(#{qnaId}, #{content}, #{userId}, now())
+	</insert>
+	
+	<update id="updateComment" parameterType="QnaCommentInfoDto">
+		update qnacommentinfo
+		set qnaId=#{qnaId}, content=#{content}, userId=#{userId}, date=now()
+		where commentId = #{commentId}
+	</update>
+	
+	<delete id="deleteComment" parameterType="int">
+		delete from qnacommentinfo
+		where commentId = #{commentId}
+	</delete>
+	
+	<delete id="deleteCommentList" parameterType="int">
+		delete from qnacommentinfo
+		where qnaId = #{qnaId}
+	</delete>
+	
+</mapper>
