@@ -3,7 +3,7 @@
     <b-col cols="3"></b-col>
     <b-col cols="9" style="background-color: white; padding: 80px">
       <router-link to="/">
-        <img src="@/assets/hh_logo.png" class="mx-auto d-block" width="150px" alt="happyhouse" />
+        <img src="@/assets/img/logo.png" class="mx-auto d-block" width="150px" alt="happyhouse" />
       </router-link>
       <div class="container w-75 mt-5 mx-auto" style="min-width: 400px; max-width: 500px">
         <b-form>

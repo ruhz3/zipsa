@@ -5,17 +5,17 @@
     </div>
     <h1 class="mb-2">글쓰기</h1>
     <hr />
-    <qna-input-item type="register" />
+    <notice-input-item type="register" />
   </div>
 </template>
 
 <script>
-import QnaInputItem from "@/components/support/item/QnaInputItem.vue";
+import NoticeInputItem from "@/components/support/notice/item/NoticeInputItem.vue";
 
 export default {
-  name: "QnaWrite",
+  name: "NoticeWrite",
   components: {
-    QnaInputItem,
+    NoticeInputItem,
   },
 };
 </script>

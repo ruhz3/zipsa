@@ -12,28 +12,28 @@
       <div class="my-5">
         <router-link :to="{ name: 'search' }"
           ><img
-            src="@/assets/house_menu.png"
+            src="@/assets/img/menu_house.png"
             style="height: 80px"
             class="mr-1"
             v-animate-css.hover="'headShake'"
         /></router-link>
         <router-link :to="{ name: 'community' }"
           ><img
-            src="@/assets/community_menu.png"
+            src="@/assets/img/menu_community.png"
             style="height: 80px"
             class="mr-1"
             v-animate-css.hover="'headShake'"
         /></router-link>
         <router-link :to="{ name: 'support' }"
           ><img
-            src="@/assets/service_menu.png"
+            src="@/assets/img/menu_service.png"
             style="height: 80px"
             class="mr-1"
             v-animate-css.hover="'headShake'"
         /></router-link>
         <router-link :to="{ name: 'interest' }"
           ><img
-            src="@/assets/inbox_menu.png"
+            src="@/assets/img/menu_inbox.png"
             style="height: 80px"
             class="mr-1"
             v-animate-css.hover="'headShake'"
@@ -42,7 +42,7 @@
     </div>
     <div>
       <b-embed type="video" aspect="16by9" loop muted controls>
-        <source src="@/assets/typo.mp4" type="video/mp4" />
+        <source src="@/assets/video/banner.mp4" type="video/mp4" />
       </b-embed>
     </div>
     <div class="container-fluid p-5">
@@ -125,7 +125,7 @@
 
 <script>
 import { listRecentNotice } from "@/api/notice.js";
-import NoticeListItem from "@/components/support/item/NoticeListItem";
+import NoticeListItem from "@/components/support/notice/item/NoticeListItem";
 
 export default {
   name: "HomeView",

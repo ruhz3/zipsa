@@ -5,17 +5,17 @@
     </div>
     <h1 class="mb-2">글수정</h1>
     <hr />
-    <notice-input-item type="modify" />
+    <qna-input-item type="modify" />
   </div>
 </template>
 
 <script>
-import NoticeInputItem from "@/components/support/item/NoticeInputItem.vue";
+import QnaInputItem from "@/components/support/qna/item/QnaInputItem.vue";
 
 export default {
-  name: "NoticeModify",
+  name: "QnaModify",
   components: {
-    NoticeInputItem,
+    QnaInputItem,
   },
 };
 </script>

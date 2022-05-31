@@ -4,7 +4,7 @@
       <b-navbar-brand href="#">
         <router-link to="/">
           <img
-            src="@/assets/new_logo3.png"
+            src="@/assets/img/logo.png"
             class="d-inline-block mt-1 p-3"
             width="200px"
             alt="happyhouse"

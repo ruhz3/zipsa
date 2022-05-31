@@ -105,8 +105,8 @@
 <script>
 import { listRecentNotice } from "@/api/notice.js";
 import { listRecentQna } from "@/api/qna.js";
-import NoticeListItem from "@/components/support/item/NoticeListItem";
-import QnaListItem from "@/components/support/item/QnaListItem";
+import NoticeListItem from "@/components/support/notice/item/NoticeListItem";
+import QnaListItem from "@/components/support/qna/item/QnaListItem";
 
 export default {
   components: {

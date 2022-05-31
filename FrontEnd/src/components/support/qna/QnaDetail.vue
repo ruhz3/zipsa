@@ -108,7 +108,7 @@
 <script>
 // import moment from "moment";
 import { getQna, deleteQna, getQnaCommentList, writeQnaComment } from "@/api/qna";
-import QnaCommentItem from "@/components/support/item/QnaCommentItem";
+import QnaCommentItem from "@/components/support/qna/item/QnaCommentItem";
 import { mapState } from "vuex";
 // import ms from "@/store/modules/memberStore";
 

@@ -4,7 +4,7 @@
     <b-col cols="9" style="background-color: white; padding: 80px">
       <div class="px-5">
         <router-link to="/">
-          <img src="@/assets/hh_logo.png" class="mx-auto d-block" width="150px" alt="happyhouse" />
+          <img src="@/assets/img/logo.png" class="mx-auto d-block" width="150px" alt="happyhouse" />
         </router-link>
         <b-form class="text-left mt-5">
           <b-alert show variant="danger" v-if="isLoginError"

@@ -52,19 +52,6 @@ const routes = [
     ],
   },
   {
-    path: "/community",
-    name: "community",
-    component: () => import("@/views/CommunityView.vue"),
-    redirect: "/community/home",
-    children: [
-      {
-        path: "home",
-        name: "communityHome",
-        component: () => import("@/components/community/CommunityHome.vue"),
-      },
-    ],
-  },
-  {
     path: "/board",
     name: "board",
     component: () => import("@/views/BoardView.vue"),
@@ -109,44 +96,44 @@ const routes = [
       {
         path: "noticedetail",
         name: "noticeDetail",
-        component: () => import("@/components/support/NoticeDetail.vue"),
+        component: () => import("@/components/support/notice/NoticeDetail.vue"),
       },
       {
         path: "noticemodify",
         name: "noticeModify",
-        component: () => import("@/components/support/NoticeModify.vue"),
+        component: () => import("@/components/support/notice/NoticeModify.vue"),
       },
       {
         path: "noticelist",
         name: "noticeList",
-        component: () => import("@/components/support/NoticeList.vue"),
+        component: () => import("@/components/support/notice/NoticeList.vue"),
       },
       {
         path: "noticeregister",
         name: "noticeRegister",
         beforeEnter: onlyAuthUser,
-        component: () => import("@/components/support/NoticeRegister.vue"),
+        component: () => import("@/components/support/notice/NoticeRegister.vue"),
       },
       {
         path: "qnadetail/:qnaId",
         name: "qnaDetail",
-        component: () => import("@/components/support/QnaDetail.vue"),
+        component: () => import("@/components/support/qna/QnaDetail.vue"),
       },
       {
         path: "qnalist",
         name: "qnaList",
-        component: () => import("@/components/support/QnaList.vue"),
+        component: () => import("@/components/support/qna/QnaList.vue"),
       },
       {
         path: "qnamodify",
         name: "qnaModify",
-        component: () => import("@/components/support/QnaModify.vue"),
+        component: () => import("@/components/support/qna/QnaModify.vue"),
       },
       {
         path: "qnaregister",
         name: "qnaRegister",
         beforeEnter: onlyAuthUser,
-        component: () => import("@/components/support/QnaRegister.vue"),
+        component: () => import("@/components/support/qna/QnaRegister.vue"),
       },
     ],
   },

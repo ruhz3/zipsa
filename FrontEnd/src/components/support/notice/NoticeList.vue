@@ -4,7 +4,7 @@
       고객센터
     </div>
     <div class="mb-2">
-      <span class="h2">Q & A</span>
+      <span class="h2">공지사항</span>
       <b-button class="ml-5" @click="moveWrite()" style="float: right">글쓰기</b-button>
     </div>
     <div class="mb-5">
@@ -25,10 +25,10 @@
         </b-thead>
         <tbody>
           <!-- 하위 component인 ListRow에 데이터 전달(props) -->
-          <qna-list-item
-            v-for="qnaInfoDto in qnaInfoDtos"
-            :key="qnaInfoDto.qnaId"
-            v-bind="qnaInfoDto"
+          <notice-list-item
+            v-for="noticeInfoDto in noticeInfoDtos"
+            :key="noticeInfoDto.noticeId"
+            v-bind="noticeInfoDto"
           />
         </tbody>
       </b-table-simple>
@@ -37,23 +37,23 @@
 </template>
 
 <script>
-import { listQna } from "@/api/qna.js";
-import QnaListItem from "@/components/support/item/QnaListItem";
+import { listNotice } from "@/api/notice.js";
+import NoticeListItem from "@/components/support/notice/item/NoticeListItem";
 
 export default {
-  name: "QnaList",
+  name: "NoticeList",
   components: {
-    QnaListItem,
+    NoticeListItem,
   },
   data() {
     return {
-      qnaInfoDtos: [],
+      noticeInfoDtos: [],
     };
   },
   created() {
-    listQna(
+    listNotice(
       (response) => {
-        this.qnaInfoDtos = response.data;
+        this.noticeInfoDtos = response.data;
       },
       (error) => {
         console.log(error);
@@ -62,7 +62,7 @@ export default {
   },
   methods: {
     moveWrite() {
-      this.$router.push({ name: "qnaRegister" });
+      this.$router.push({ name: "noticeRegister" });
     },
   },
 };
