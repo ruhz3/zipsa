@@ -16,6 +16,10 @@ import com.ssafy.happyhouse.model.QnaInfoDto;
 import com.ssafy.happyhouse.model.service.NoticeService;
 import com.ssafy.happyhouse.model.service.QnaService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api("고객센터 API")
 @RestController
 @RequestMapping("/cs")
 public class CustomerServiceController {
@@ -29,13 +33,14 @@ public class CustomerServiceController {
 	@Autowired
 	private QnaService qnaService;
 
-	
+	@ApiOperation("공지사항의 최근 5개 게시글 목록을 반환합니다.")
 	@GetMapping("/notices")
 	public ResponseEntity<List<NoticeInfoDto>> getNoticeRecentList(){
 		logger.debug("getNoticeRecentList - 호출");
 		return new ResponseEntity<List<NoticeInfoDto>>(noticeService.getNoticeRecentList(), HttpStatus.OK);
 	}
 	
+	@ApiOperation("Q&A의 최근 5개 게시글 목록을 반환합니다.")
 	@GetMapping("/qna")
 	public ResponseEntity<List<QnaInfoDto>> getQnaRecentList(){
 		logger.debug("getQnaRecentList - 호출");

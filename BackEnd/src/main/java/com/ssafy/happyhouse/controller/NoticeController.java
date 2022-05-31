@@ -20,6 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ssafy.happyhouse.model.NoticeInfoDto;
 import com.ssafy.happyhouse.model.service.NoticeService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api("공지사항 API")
 @RestController
 @RequestMapping("/notices")
 @CrossOrigin("*")
@@ -32,26 +36,28 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	
-	
+	@ApiOperation("공지사항 목록을 반환합니다.")
 	@GetMapping
 	public ResponseEntity<List<NoticeInfoDto>> getNoticeList(){
 		logger.debug("getNoticeList - 호출");
 		return new ResponseEntity<List<NoticeInfoDto>>(noticeService.getNoticeList(), HttpStatus.OK);
 	}
 	
+	@ApiOperation("공지사항의 최근 5개 게시글 목록을 반환합니다.")
 	@GetMapping("/recent")
 	public ResponseEntity<List<NoticeInfoDto>> getNoticeRecentList(){
 		logger.debug("getNoticeList - 호출");
 		return new ResponseEntity<List<NoticeInfoDto>>(noticeService.getNoticeRecentList(), HttpStatus.OK);
 	}
 
-	
+	@ApiOperation("하나의 공지사항을 반환합니다.")
 	@GetMapping("{noticeId}")
 	public ResponseEntity<NoticeInfoDto> getNoticeDetail(@PathVariable int noticeId){
 		logger.debug("getNoticeDetail - 호출");
 		return new ResponseEntity<NoticeInfoDto>(noticeService.getNoticeDetail(noticeId), HttpStatus.OK);
 	}
 	
+	@ApiOperation("공지사항을 생성합니다.")
 	@PostMapping
 	public ResponseEntity<String> createNotice(@RequestBody NoticeInfoDto noticeInfoDto){
 		logger.debug("createNotice - 호출");
@@ -61,6 +67,7 @@ public class NoticeController {
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 	}
 	
+	@ApiOperation("공지사항을 수정합니다.")
 	@PutMapping("{noticeId}")
 	public ResponseEntity<String> modifyNotice(@RequestBody NoticeInfoDto noticeInfoDto){
 		logger.debug("modifyNotice - 호출");
@@ -70,6 +77,7 @@ public class NoticeController {
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 	}
 	
+	@ApiOperation("공지사항을 삭제합니다.")
 	@DeleteMapping("{noticeId}")
 	public ResponseEntity<String> removeNotice(@PathVariable int noticeId){
 		logger.debug("removeNotice - 호출");
@@ -78,6 +86,4 @@ public class NoticeController {
 		}
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 	}
-	
-	
 }

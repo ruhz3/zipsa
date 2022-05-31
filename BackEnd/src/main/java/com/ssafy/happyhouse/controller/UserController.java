@@ -25,7 +25,10 @@ import com.ssafy.happyhouse.model.UserInfoDto;
 import com.ssafy.happyhouse.model.service.JwtServiceImpl;
 import com.ssafy.happyhouse.model.service.UserService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
+@Api("로그인 API")
 @Controller
 @RequestMapping("/user")
 @CrossOrigin("*")
@@ -41,6 +44,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	@ApiOperation("아이디, 비밀번호가 맞으면 JWT를 제공합니다.")
 	@PostMapping("/login")
 	public ResponseEntity<Map<String, Object>> login(@RequestBody UserInfoDto userInfoDto){
 		logger.debug("login - 호출");
@@ -66,7 +70,7 @@ public class UserController {
 		return new ResponseEntity<Map<String,Object>>(resultMap, status);
 	}
 
-	
+	@ApiOperation("JWT 토큰이 유효하다면, 회원 정보를 반환합니다.")
 	@GetMapping("/{userId}")
 	public ResponseEntity<Map<String, Object>> getUserInfo(@PathVariable("userId") String userId, HttpServletRequest request){
 		logger.debug("userId : ", userId);
@@ -93,6 +97,7 @@ public class UserController {
 		return new ResponseEntity<Map<String,Object>>(resultMap, status);
 	}
 	
+	@ApiOperation("회원가입합니다.")
 	@PostMapping
 	public ResponseEntity<String> signup(@RequestBody UserInfoDto userInfoDto){
 		logger.debug("userInfoDto info : {}", userInfoDto);
@@ -105,7 +110,7 @@ public class UserController {
 
 		
 	}
-	
+	@ApiOperation("회원 정보를 수정합니다.")
 	@PutMapping
 	public ResponseEntity<String> modify(@RequestBody UserInfoDto userInfoDto) throws Exception{
 		logger.debug("modifyUser : ", userInfoDto);
@@ -113,6 +118,7 @@ public class UserController {
 		else	return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 	}
 	
+	@ApiOperation("회원 탈퇴합니다.")
 	@DeleteMapping
 	public ResponseEntity<String> delete(@RequestBody UserInfoDto userInfoDto) throws Exception{
 		logger.debug("deleteUser : ", userInfoDto);
@@ -120,6 +126,7 @@ public class UserController {
 		else	return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 	}
 	
+	@ApiOperation("분실한 비밀번호를 찾습니다.")
 	@PostMapping("/findpw")
 	public ResponseEntity<String> findPassword(@RequestBody UserInfoDto userInfoDto) throws Exception{
 		logger.debug("findPassword : ", userInfoDto.getUserPassword());
