@@ -1,4 +1,5 @@
 # 집사 ZIPSA
+![banner](https://user-images.githubusercontent.com/26182769/176642232-17e93622-e3ed-455e-9a9d-47d717b8beaa.png)
 
 - [개요](#개요)
 - [상세기능](#상세기능)
@@ -20,7 +21,12 @@
 ## 상세기능
 ### 메인 페이지
 
+<details markdown="1">
+<summary> 펼쳐서 캡쳐화면을 확인하세요❗ </summary>
+
 ![Untitled](https://user-images.githubusercontent.com/26182769/176634597-09f5589c-276a-4cf5-8200-9c93a8ca3794.png)
+
+</details>
 
 1. 배너 및 단축 메뉴
 2. 집사 ZIPSA 홍보영상
@@ -30,7 +36,12 @@
 
 ### 회원 페이지
 
+<details markdown="1">
+<summary> 펼쳐서 캡쳐화면을 확인하세요❗ </summary>
+
 ![Untitled 1](https://user-images.githubusercontent.com/26182769/176634643-2ceb23ae-5ceb-42f5-8831-eab4907e286a.png)
+
+</details>
 
 1. 로그인
 2. 회원가입
@@ -40,7 +51,12 @@
 
 ### 검색 페이지
 
+<details markdown="1">
+<summary> 펼쳐서 캡쳐화면을 확인하세요❗ </summary>
+
 ![Untitled 2](https://user-images.githubusercontent.com/26182769/176634655-16cd4e5e-10ae-4518-96be-f6b2651c8833.png)
+
+</details>
 
 1. 지역별 검색
 2. 클릭 시 상세 공공데이터 팝업
@@ -50,7 +66,12 @@
 
 ### 고객센터 페이지
 
+<details markdown="1">
+<summary> 펼쳐서 캡쳐화면을 확인하세요❗ </summary>
+
 ![Untitled 3](https://user-images.githubusercontent.com/26182769/176634663-985ed6e6-5651-429d-843b-55be6d5a60fd.png)
+
+</details>
 
 1. 공지사항, Q&A의 최근 5개 페이지 노출
 2. 더보기 클릭 시 해당 게시판으로 이동
@@ -59,7 +80,12 @@
 
 ### 나의 관심단지 페이지
 
+<details markdown="1">
+<summary> 펼쳐서 캡쳐화면을 확인하세요❗ </summary>
+
 ![Untitled 4](https://user-images.githubusercontent.com/26182769/176634670-f223c460-251a-4cf8-81c7-29410b53993c.png)
+
+</details>
 
 1. 관심 목록 삭제 기능
 2. 차트 비교 시각화 기능
